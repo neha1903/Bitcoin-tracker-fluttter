@@ -1,5 +1,5 @@
-import 'package:bitcoin_ticker_flutter/Custom/custom_scroller.dart';
-import 'package:bitcoin_ticker_flutter/Custom/cutom_button.dart';
+import 'package:bitcoin_ticker_flutter/customWidgets/custom_button.dart';
+import 'package:bitcoin_ticker_flutter/customWidgets/custom_scroller.dart';
 import 'package:bitcoin_ticker_flutter/utilities/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
