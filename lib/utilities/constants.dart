@@ -8,3 +8,6 @@ const kCardTextStyle = TextStyle(
   fontSize: 20.0,
   color: Colors.white,
 );
+const IP = "https://rest.coinapi.io/v1/exchangerate";
+
+const apiKey = 'Your-Api-Key';
