@@ -17,9 +17,16 @@ class PriceScreen extends StatefulWidget {
 class _PriceScreenState extends State<PriceScreen> {
   CoinData coinData = CoinData();
   ExchangeCurrency exchangeCurrency = ExchangeCurrency();
-  String selectedCurrency = "USD";
+  String selectedCurrency = "AUD";
   int currency = 0;
   var data = [];
+
+  @override
+  void initState() {
+    super.initState();
+    setUI();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,8 +67,10 @@ class _PriceScreenState extends State<PriceScreen> {
       onChanged: (value) {
         setState(() async {
           selectedCurrency = value.toString();
-          var data = await exchangeCurrency.getCurrencyRates(0, "USD");
-          print("1 BTC = ${data['rate']}");
+          data = await exchangeCurrency.getAllCurrencyData(selectedCurrency);
+          setState(() {
+            addButtonsInColumn(data);
+          });
         });
       },
     );
@@ -98,7 +107,7 @@ class _PriceScreenState extends State<PriceScreen> {
   List<Widget> addButtonsInColumn(var data) {
     List<Widget> list = [];
 
-    for (int i = 0; i < coinData.cryptoList.length; i++) {
+    for (int i = 0; i < data.length; i++) {
       list.add(Padding(
         padding: kCardEdgePadding,
         child: CustomButton(
@@ -108,5 +117,12 @@ class _PriceScreenState extends State<PriceScreen> {
     }
 
     return list;
+  }
+
+  void setUI() async {
+    data = await exchangeCurrency.getAllCurrencyData(selectedCurrency);
+    setState(() {
+      addButtonsInColumn(data);
+    });
   }
 }
